@@ -6,14 +6,13 @@ using namespace std;
 class Desk
 {
 public:
-	const int row = 3;
-	const int col = 3;
-	int field[3][3];
+	
+	char field[3][3];
 
 	Desk() {
-		for (int i = 0; i < row; i++)
+		for (int i = 0; i < 3; i++)
 		{
-			for (int j = 0; j < col; j++)
+			for (int j = 0; j < 3; j++)
 			{
 				field[i][j] = '-';
 				cout << field[i][j] << " ";
@@ -22,38 +21,27 @@ public:
 		}
 	}
 	void printField() {
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < col; j++) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
 				cout << field[i][j] << " ";
 			}
 			cout << endl;
 		}
 	}
+
+	//funkcia proverki na pobedy i nichiu
 };
 
 
-void Player(char A)
+void Player(Desk& desk, char A)
 {
-	char A;
-	cout << "Выберите x или o: " << endl;
-	cin >> A;
+	
 	int x;
 	int x0;
 	int y0;
 	int y;
-	const int row = 3;
-	const int col = 3;
-	int field[3][3];
-	for (int i = 0; i < row; i++)
-	{
-		for (int j = 0; j < col; j++)
-		{
-			field[i][j] = '-';
-			cout << field[i][j] << " ";
-		}
-		cout << endl;
-	}
-	while (true)
+	
+	do
 	{
 		cout << "Введите расположение по горизонтали " << endl;
 		cin >> x0;
@@ -64,43 +52,25 @@ void Player(char A)
 
 		for (int i = 0; i < 3; i++) {
 
-			if (field[x][y] == 'x') {
-				cout << "место занято" << endl;
+			if (desk.field[x][y] == '-') {
+				desk.field[x][y] = A;
 				break;
-				continue;
 
 			}
-			else if (field[x][y] == 'o') {
+			else {
 				cout << "место занято" << endl;
-				continue;
 
-			}
-			for (int i = 0; i < row; i++)
-			{
-				for (int j = 0; j < col; j++)
-				{
-
-					cout << field[i][j] << " ";
-					field[x][y] = A;
-				}
-				cout << endl;
 			}
 		}
-	}
+	} while (true);
+
+	//proverka 
 	};
 
-	void main()
+	int main()
 	{
 		setlocale(LC_ALL, "ru");
-		char A;
-		int x;
-		int x0;
-		int y0;
-		int y;
-		const int row = 3;
-		const int col = 3;
-		int field[3][3];
-		
-		Player('x');
-		Player('o');
+		Desk desk;
+		Player(desk, 'x');
+		Player(desk, 'o');
 	}
