@@ -95,7 +95,7 @@ void Player(Desk& desk, char A)
 
 	//proverka 
 };
-
+//s
 int main()
 {
 	Desk desk;
