@@ -30,6 +30,21 @@ public:
 	}
 
 	//funkcia proverki na pobedy i nichiu
+	void isFull() {
+		int schet = 0;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (field[i][j] == 'x' || field[i][j] == '0') {
+					schet += 1;
+				}
+			}
+		}
+		if (schet == 9)
+		{
+			cout << "Ничья!" << endl;
+		}
+	}
+
 	void checkWinX() {
 		for (int i = 0; i < 3; i++) {
 			if ((field[i][0] == 'x' && field[i][1] == 'x' && field[i][2] == 'x') ||
@@ -54,14 +69,15 @@ public:
 		if ((field[0][0] == '0' && field[1][1] == '0' && field[2][2] == '0') ||
 			(field[0][2] == '0' && field[1][1] == '0' && field[2][0] == '0')) {
 			cout << "O won!" << endl;
+	
 		}
 	}
 };
 
 
-void Player(Desk& desk, char A)
+void Player(Desk& desk)
 {
-
+	char A;
 	int x;
 	int x0;
 	int y0;
@@ -69,6 +85,7 @@ void Player(Desk& desk, char A)
 
 	do
 	{
+		A = 'x';
 		cout << "Введите расположение по вертикали" << endl;
 		cin >> x0;
 		x = x0 - 1;
@@ -91,6 +108,31 @@ void Player(Desk& desk, char A)
 		desk.printField();
 		desk.checkWinX();
 		desk.checkWinO();
+		desk.isFull();
+		A = '0';
+		cout << "Введите расположение по вертикали" << endl;
+		cin >> x0;
+		x = x0 - 1;
+		cout << "Введите расположение по горизонтали" << endl;
+		cin >> y0;
+		y = y0 - 1;
+
+		for (int i = 0; i < 3; i++) {
+
+			if (desk.field[x][y] == '-') {
+				desk.field[x][y] = A;
+				break;
+
+			}
+			else {
+				cout << "не вышло" << endl;
+
+			}
+		}
+		desk.printField();
+		desk.checkWinX();
+		desk.checkWinO();
+		desk.isFull();
 	} while (true);
 
 	//proverka 
@@ -99,6 +141,5 @@ void Player(Desk& desk, char A)
 int main()
 {
 	Desk desk;
-	Player(desk, 'x');
-	Player(desk, 'o');
+	Player(desk);
 }
