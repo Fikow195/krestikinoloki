@@ -28,7 +28,7 @@ public:
 				cout << field[i][j] << " "; 
 				if (j < 2) cout << "|";
 			}
-			if (i < 2) cout << "  |---|---|---|" << endl;;
+			if (i < 2) cout << "  |---|---|---|" << endl;
 			
 		}
 	}
