@@ -21,11 +21,15 @@ public:
 		}
 	}
 	void printField() {
+		cout << "  1 2 3\n";
 		for (int i = 0; i < 3; i++) {
+			cout << char('A' + i) << ' ';
 			for (int j = 0; j < 3; j++) {
-				cout << field[i][j] << " ";
+				cout << field[i][j] << " "; 
+				if (j < 2) cout << "|";
 			}
-			cout << endl;
+			if (i < 2) cout << "  |---|---|---|" << endl;;
+			
 		}
 	}
 
@@ -33,7 +37,7 @@ public:
 };
 
 
-void Player(Desk& desk, char A)
+void Player(Desk& desk, char player)
 {
 	
 	int x;
@@ -43,17 +47,17 @@ void Player(Desk& desk, char A)
 	
 	do
 	{
-		cout << "Введите расположение по горизонтали " << endl;
+		cout << "Игрок"<< player <<"Введите расположение по горизонтали " << endl;//izmenila nemnogo
 		cin >> x0;
-		x = x0 - 1;
-		cout << "Введите расположение по вертикали " << endl;
+		x = x0 - 'A'-1;
+		cout << "Игрок" << player << "Введите расположение по вертикали " << endl;
 		cin >> y0;
-		y = y0 - 1;
+		y = y0 - 2;
 
 		for (int i = 0; i < 3; i++) {
 
 			if (desk.field[x][y] == '-') {
-				desk.field[x][y] = A;
+				desk.field[x][y] = player;
 				break;
 
 			}
