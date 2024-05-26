@@ -21,12 +21,18 @@ public:
 		}
 	}
 	void printField() {
+		cout << "   1    2    3" << endl;
+		cout << "   -----------" << endl;
 		for (int i = 0; i < 3; i++) {
+			cout << char('A' + i) << " |";
 			for (int j = 0; j < 3; j++) {
-				cout << field[i][j] << " ";
+				cout << ' ' << field[i][j] << " ";
+				if (j < 2) cout << "|";
 			}
-			cout << endl;
+			cout << "|" << endl;
+			if (i < 2) cout << "  |---|---|---|" << endl;
 		}
+		cout << "   -----------" << endl;
 	}
 
 	//funkcia proverki na pobedy i nichiu
@@ -69,6 +75,7 @@ public:
 		if ((field[0][0] == '0' && field[1][1] == '0' && field[2][2] == '0') ||
 			(field[0][2] == '0' && field[1][1] == '0' && field[2][0] == '0')) {
 			cout << "O won!" << endl;
+
 	
 		}
 	}
@@ -82,20 +89,20 @@ void Player(Desk& desk)
 	int x0;
 	int y0;
 	int y;
-
+	desk.printField();
 	do
 	{
 		A = 'x';
-		cout << "Введите расположение по вертикали" << endl;
+		cout << "Игрок " << 'x' << " Введите расположение по горизонтали " << endl;//izmenila nemnogo
 		cin >> x0;
 		x = x0 - 1;
-		cout << "Введите расположение по горизонтали" << endl;
+		cout << "Игрок " << 'x' << " Введите расположение по вертикали " << endl;
 		cin >> y0;
 		y = y0 - 1;
 		
 		for (int i = 0; i < 3; i++) {
 
-			if (desk.field[x][y] == '-') {
+			if (desk.field[x][y] != 'x' && desk.field[x][y] != '0') {
 				desk.field[x][y] = A;
 				break;
 
@@ -110,10 +117,10 @@ void Player(Desk& desk)
 		desk.checkWinO();
 		desk.isFull();
 		A = '0';
-		cout << "Введите расположение по вертикали" << endl;
+		cout << "Игрок " << '0' << " Введите расположение по горизонтали " << endl;//izmenila nemnogo
 		cin >> x0;
 		x = x0 - 1;
-		cout << "Введите расположение по горизонтали" << endl;
+		cout << "Игрок " << '0' << " Введите расположение по вертикали " << endl;
 		cin >> y0;
 		y = y0 - 1;
 
